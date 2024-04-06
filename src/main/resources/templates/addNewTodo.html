@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form th:object="${newTodo}"
+		th:action="@{/update/{id}(id=${newTodo.id})}" id="form" onsubmit="return validateForm();" method=POST>
+		<div>
+			<label for="todo">Todo Text</label>
+			<input name="todo" id="todo" th:field="*{note}" type="text" />
+		</div>
+		<div>
+			<button type="submit" value="submit">Submit</button>
+		</div>
+	</form>
+	<a href="viewAll">View all Todo's</a>
+	
+	<script type="text/javascript">
+		function validateForm() {
+			const todo = document.getElementById("todo")
+			
+			if(todo.value === "") {
+				console.log("test" + todo.value)
+				alert("Enter a todo item")
+				todo.focus()
+				return false
+			}
+		}
+	</script>
+</body>
+</html>
